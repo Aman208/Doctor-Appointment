@@ -19,6 +19,8 @@ import Home from "./src/views/Home";
 import CustomDrawerComponent from './src/components/CustomDrawerComponent';
 import Category from './src/views/Category';
 import Detail from "./src/views/Detail"
+import FAQ from './src/views/FAQ';
+import SlotPick from './src/views/SlotPick';
 export default class App extends React.Component {
   render(){
       return ( <AppContainer />);
@@ -125,6 +127,66 @@ const HomeStackNavigator = createStackNavigator({
       };
     }
   },
+
+  SlotPick: {
+    screen: SlotPick,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitleStyle: {
+          color: "white"
+        },
+        headerStyle: {
+          backgroundColor: "#5BBC9D"
+        },
+        headerTitle: navigation.state.params.date,
+        headerLeft: null,
+        headerRight: (
+          <Icon
+            onPress={() => navigation.navigate("Detail")}
+            name="ios-skip-backward"
+            color="white"
+            size={30}
+            style={{
+              paddingRight: 10
+            }}
+          />
+        ),
+        gesturesEnabled: false
+      };
+    }
+  },
+  
+
+ FAQ:{
+  screen: FAQ,
+  navigationOptions: ({ navigation }) => {
+    return {
+      headerTitleStyle: {
+        color: "white" ,
+        size:20
+      },
+      headerStyle: {
+        backgroundColor: "#5BBC9D"
+      },
+      headerTitle: "FAQ" ,
+      headerLeft: null,
+      headerRight: (
+        <Icon
+          onPress={() => { navigation.navigate("Home")} }
+          name="ios-close"
+          color="white"
+          size={50}
+          style={{
+            paddingRight: 10
+          }}
+        />
+      ),
+      gesturesEnabled: false
+    };
+  }
+
+ }
+
 })
   
 
