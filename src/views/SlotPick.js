@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, ProgressBarAndroid, ScrollView  , StyleSheet} from "react-native";
+import { View, Text, ProgressBarAndroid, ScrollView  , StyleSheet , Button} from "react-native";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from "react-native-responsive-screen";
 import Icon from "@expo/vector-icons/Ionicons";
+
 
 
 const Datepick = [
@@ -19,12 +20,24 @@ const Datepick = [
 
 
 class SlotPick extends Component {
+
+
+    
   state = {
     currentIndex: 0
   };
 
   renderDate = () => {
+
+    const {
+       name,
+        date
+      } = this.props.navigation.state.params;
+
     return Datepick.map((item, i) => {
+
+        console.log(name);
+      
       return (
         <Text
           key={i}
@@ -35,7 +48,7 @@ class SlotPick extends Component {
             paddingHorizontal: 10
           }}
         >
-          {item}
+          {item} 
         </Text>
       );
     });
@@ -43,19 +56,37 @@ class SlotPick extends Component {
 
 
   renderItemList = () => {
-    return ( <View style={styles.container}>
+
+
+  
     
+    return ( <View style={styles.container}>
+
+         <View
+          style={{
+          
+            flexDirection: "row" , 
+            
+          }}
+        >
+          <View
+            style={{
+              flex: 4 ,
+              marginLeft :10
+            }}
+          >
+    <Text >SLOT : 7.00 PM  - 9.00 PM </Text> 
     <ProgressBarAndroid style={styles.progress}styleAttr="Horizontal" 
       indeterminate={false}
     progress={0.2}/>
-    <ProgressBarAndroid style={styles.progress}
-     styleAttr="Horizontal" color="#2196F3" progress={0.4}
-     indeterminate={false} />
-    <ProgressBarAndroid style={styles.progress}
-      styleAttr="Horizontal"
-      indeterminate={false}
-      progress={0.5}
-    />
+    </View>
+   <View style={{
+              flex: 1
+            }}>
+   <Button title=">>" /></View>
+
+   </View>
+
   </View>)
   };
 
@@ -127,11 +158,13 @@ class SlotPick extends Component {
         >
           <ScrollView
             contentContainerStyle={{
-              flexDirection: "row",
-              flexWrap: "wrap",
+            //   flexDirection: "column",
+              
               justifyContent: "space-between"
             }}
           >
+            {this.renderItemList()}
+            {this.renderItemList()}
             {this.renderItemList()}
           </ScrollView>
         </View>
@@ -151,7 +184,7 @@ const styles = StyleSheet.create({
     },
     progress:{
 
-        margin : 20 ,
+        margin : 12 ,
         height: 20,
    borderColor: '#000',
    borderWidth: 2,

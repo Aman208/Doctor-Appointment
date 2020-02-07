@@ -16,17 +16,26 @@ export default class Login extends Component {
         this.saveData = this.saveData.bind(this);
     }
 
-    saveData = ()=>{
+    saveData =  ()=>{
         const {email,password} = this.state;
 
-        //save data with asyncstorage
+        
         let loginDetails={
             email: email,
             password: password
         }
 
-        
-            AsyncStorage.setItem('loginDetails', JSON.stringify(loginDetails));
+        // fetch('https://facebook.github.io/react-native/movies.json')
+        // .then((response) => response.json())
+        // .then((responseJson) => {
+  
+        //   console.log(responseJson);
+  
+        // })
+        // .catch((error) =>{
+        //   console.error(error);
+        // });
+           AsyncStorage.setItem('loginDetails', JSON.stringify(loginDetails));
             Keyboard.dismiss();
             alert("You successfully registered. Email: " + email + ' password: ' + password);
             this.props.navigation.navigate("Home");
@@ -56,7 +65,8 @@ export default class Login extends Component {
             style={{
               fontSize: 70,
               fontWeight: "400",
-              opacity: 1
+              opacity: 1,
+              color : "white"
             }}
           >
             Login.
@@ -69,7 +79,7 @@ export default class Login extends Component {
                 placeholder="Email"
                 placeholderTextColor = "#002f6c"
                 selectionColor="#fff"
-                keyboardType="Email-address"
+                keyboardType="email-address"
                 onSubmitEditing={()=> this.password.focus()}/>
                 
                 <TextInput style={styles.inputBox}
@@ -91,7 +101,7 @@ export default class Login extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity > 
-                    <Text style={styles.extraText} onPress={this.saveData}> Forgat Password</Text>
+                    <Text style={styles.extraText} onPress={() => this.saveData}> Forgat Password</Text>
                 </TouchableOpacity>
 
 
@@ -103,15 +113,18 @@ export default class Login extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
+        // justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor:"#153c69" ,
+        flex :1
     },
     inputBox: {
         width: 300,
+        height : 50 ,
         backgroundColor: '#eeeeee', 
         borderRadius: 25,
         paddingHorizontal: 16,
-        fontSize: 24,
+        fontSize: 14,
         color: '#002f6c',
         marginVertical: 10
     },

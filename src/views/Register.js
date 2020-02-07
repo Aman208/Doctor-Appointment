@@ -7,10 +7,10 @@ import {
   StyleSheet,
   Animated,
   TouchableOpacity ,
-  Keyboard
+  TextInput
 } from "react-native";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-import Input from "../components/Input";
+//import Input from "../components/Input";
 import Button from "../components/Button";
 
 class Register extends Component {
@@ -18,18 +18,25 @@ class Register extends Component {
   constructor(props){
     super(props);
     this.state={
-      
-      
+      email:'',
+      password: '', 
+      username : ''
      
         
     }
 
     this.onPressCompleteRegister = this.onPressCompleteRegister.bind(this);
+    this.onPressLoginRedirect = this.onPressLoginRedirect.bind(this);
 }
 
   onPressCompleteRegister = () => {
     this.props.navigation.navigate("Home");
   };
+
+  onPressLoginRedirect = () => {
+     
+    this.props.navigation.navigate("Login");
+  }
 
   
 
@@ -38,7 +45,8 @@ class Register extends Component {
       <View
         style={{
           flex: 1,
-          backgroundColor: "#F6F6F6"
+          backgroundColor:"#153c69" ,
+          flexDirection:"column"
         }}
       >
         <View
@@ -46,8 +54,8 @@ class Register extends Component {
             height: hp("18%"),
             justifyContent: "center",
             paddingHorizontal: hp("2.5%"),
-            marginTop: 10
-            // marginTop: Platform.OS == "android" ? hp("3.75%") : null
+            marginTop: 10 ,
+           
           }}
         >
           <Text
@@ -55,7 +63,8 @@ class Register extends Component {
               fontSize: 50,
               fontWeight: "400",
               // opacity: this.animatedTitleOpacity
-              opacity: 1
+              opacity: 1,
+              color : "#ffffff"
             }}
           >
             Signup.
@@ -64,45 +73,50 @@ class Register extends Component {
         
         <View
           style={{
-            flex: 1,
+           
             paddingHorizontal: hp("2.5%"),
             marginBottom: Platform.OS == "android" ? hp("10%") : null,
             marginTop: 0
           }}
         >
           {/* form */}
-          <Input label="Your name" placeholder="Enter your Full name" />
-          <Input label="Your email address" placeholder="Email address" />
-          <Input label="Your password" placeholder="Password" />
-          <Text
-            style={{
-              fontWeight: "500",
-              color: "gray"
-            }}
-          >
-            Or easily{" "}
-            <Text
-              style={{
-                color: "#F08C4F"
-              }}
-            >
-              Connect with facebook
-            </Text>
-          </Text>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            paddingHorizontal: hp("2.5%") ,
-            marginTop: 10
-          }}
-        >
+          <TextInput style={styles.inputBox}
+                onChangeText={(username) => this.setState({username})}
+                underlineColorAndroid='rgba(0,0,0,0)' 
+                placeholder="UserName"
+                placeholderTextColor = "#002f6c"
+                // selectionColor="#fff"
+                onSubmitEditing={()=> this.email.focus()}
+                />
+
+         <TextInput style={styles.inputBox}
+                onChangeText={(email) => this.setState({email})}
+                underlineColorAndroid='rgba(0,0,0,0)' 
+                placeholder="Email"
+                placeholderTextColor = "#002f6c"
+                // selectionColor="#fff"
+                keyboardType="email-address"
+                ref={(input) => this.email = input}
+                onSubmitEditing={()=> this.password.focus()}/>
+
+          <TextInput style={styles.inputBox}
+                onChangeText={(password) => this.setState({password})} 
+                underlineColorAndroid='rgba(0,0,0,0)' 
+                placeholder="Password"
+                secureTextEntry={true}
+                placeholderTextColor = "#002f6c"
+                ref={(input) => this.password = input}
+                />
+         
+         
+        
           
             <View
               style={{
                 flex: 1,
                 // justifyContent: "flex-end",
                 // paddingBottom: hp("5%")
+                marginTop:20
               }}
             >
               <Button
@@ -112,11 +126,12 @@ class Register extends Component {
                 text="Complete registration"
               />
 
-               <TouchableOpacity > 
-                    <Text style={styles.extraText}
-                      onPress={() => this.props.navigation.navigate("Login")
-                    }> Go To Login Page </Text>
-                </TouchableOpacity>
+              <Text
+                
+                onPress={this.onPressLoginRedirect}
+                style={styles.extraText}
+                
+              > Go To Login </Text>
 
                 
             </View>
@@ -134,8 +149,33 @@ const styles = StyleSheet.create({
       fontWeight: '300',
       color: '#4f83cc',
       textAlign: 'center',
-      marginTop:5
-  }
+      marginTop:15
+  } ,
+    inputBox: {
+        width: 300,
+        height : 50 ,
+        backgroundColor: '#eeeeee', 
+        borderRadius: 25,
+        paddingHorizontal: 16,
+        fontSize: 14,
+        color: '#002f6c',
+        marginVertical: 10
+    },
+    button: {
+        width: 300,
+        backgroundColor: '#4f83cc',
+        borderRadius: 25,
+        marginVertical: 10,
+        paddingVertical: 12
+    },
+    buttonText: {
+        fontSize: 16,
+        fontWeight: '500',
+        color: '#ffffff',
+        textAlign: 'center'
+    } 
+
+
 });
 
 export default Register;
