@@ -21,14 +21,10 @@ const Datepick = [
 
 class SlotPick extends Component {
 
-
-    
-  state = {
-    currentIndex: 0
-  };
+ 
+  
 
   renderDate = () => {
-
     const {
        name,
         date
@@ -41,10 +37,10 @@ class SlotPick extends Component {
       return (
         <Text
           key={i}
-          onPress={() => this.setState({ currentIndex: i })}
+         
           style={{
             fontSize: 18,
-            color: this.state.currentIndex === i ? "#F08C4F" : "white",
+            color: "#F08C4F" ,
             paddingHorizontal: 10
           }}
         >
@@ -56,30 +52,31 @@ class SlotPick extends Component {
 
 
   renderItemList = () => {
-
-
-  
     
-    return ( <View style={styles.container}>
 
-         <View
+return ( <View style={styles.container}>
+ <View
           style={{
           
             flexDirection: "row" , 
             
           }}
         >
+           
+    
+     
           <View
             style={{
               flex: 4 ,
               marginLeft :10
             }}
           >
-    <Text >SLOT : 7.00 PM  - 9.00 PM </Text> 
+    <Text >nniiii </Text> 
     <ProgressBarAndroid style={styles.progress}styleAttr="Horizontal" 
       indeterminate={false}
-    progress={0.2}/>
+    progress={0.3}/>
     </View>
+
    <View style={{
               flex: 1
             }}>
@@ -90,7 +87,12 @@ class SlotPick extends Component {
   </View>)
   };
 
+
+
   render() {
+
+  
+
     return (
       <View
         style={{
@@ -193,3 +195,22 @@ const styles = StyleSheet.create({
   });
 
 export default SlotPick;
+
+
+
+
+
+
+
+
+ 
+
+ 
+  
+ 
+  
+ 
+  
+    
+ 
+       

@@ -9,8 +9,5 @@ npm-debug.*
 *.orig.*
 web-build/
 web-report/
-src/components/*
-src/views/Category.js
-src/views/Detail.js
-# macOS
+
 .DS_Store

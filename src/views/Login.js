@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, AsyncStorage, Keyboard } from 'react-native';
 
-import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import {
+    heightPercentageToDP as hp,
+    widthPercentageToDP as wp
+  } from "react-native-responsive-screen";
 
 export default class Login extends Component {
 
@@ -25,17 +28,25 @@ export default class Login extends Component {
             password: password
         }
 
-        // fetch('https://facebook.github.io/react-native/movies.json')
-        // .then((response) => response.json())
-        // .then((responseJson) => {
-  
-        //   console.log(responseJson);
-  
-        // })
-        // .catch((error) =>{
-        //   console.error(error);
-        // });
-           AsyncStorage.setItem('loginDetails', JSON.stringify(loginDetails));
+        fetch('http://192.168.43.95:3000/api/patient/login', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              password : this.state.password ,
+              patientId :"124"
+            }),
+          }).then((response) => response.json())
+          .then((responseJson) => {
+            console.log(responseJson.token);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+
+            AsyncStorage.setItem('loginDetails', JSON.stringify(loginDetails));
             Keyboard.dismiss();
             alert("You successfully registered. Email: " + email + ' password: ' + password);
             this.props.navigation.navigate("Home");
@@ -101,7 +112,7 @@ export default class Login extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity > 
-                    <Text style={styles.extraText} onPress={() => this.saveData}> Forgat Password</Text>
+                    <Text style={styles.extraText} onPress={() => this.props.navigation.navigate("Home") }> Forgat Password</Text>
                 </TouchableOpacity>
 
 
@@ -115,11 +126,11 @@ const styles = StyleSheet.create({
     container: {
         // justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor:"#153c69" ,
+        backgroundColor:"#1c2c38" ,
         flex :1
     },
     inputBox: {
-        width: 300,
+        width: wp("92%"),
         height : 50 ,
         backgroundColor: '#eeeeee', 
         borderRadius: 25,
@@ -130,7 +141,7 @@ const styles = StyleSheet.create({
     },
     button: {
         width: 300,
-        backgroundColor: '#4f83cc',
+        backgroundColor: '#4ac2ae',
         borderRadius: 25,
         marginVertical: 10,
         paddingVertical: 12

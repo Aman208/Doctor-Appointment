@@ -94,7 +94,7 @@ const HomeStackNavigator = createStackNavigator({
           color: "white"
         },
         headerStyle: {
-          backgroundColor: "#5BBC9D"
+          backgroundColor: "#1c2c38"
         },
         headerLeft: (
           <Icon
@@ -133,9 +133,9 @@ const HomeStackNavigator = createStackNavigator({
           color: "white"
         },
         headerStyle: {
-          backgroundColor: "#5BBC9D"
+          backgroundColor: "#171941"
         },
-        headerTitle: navigation.state.params.detailName,
+        headerTitle: "Book Appointment",
         headerLeft: null,
         headerRight: (
           <Icon
@@ -188,7 +188,7 @@ const HomeStackNavigator = createStackNavigator({
           color: "white"
         },
         headerStyle: {
-          backgroundColor: "#5BBC9D"
+          backgroundColor: "#1c2c38"
         },
         headerTitle: "Health Record",
        
@@ -230,7 +230,7 @@ const HomeStackNavigator = createStackNavigator({
        
       },
       headerStyle: {
-        backgroundColor: "#5BBC9D"
+        backgroundColor: "#1c2c38"
       },
       headerTitle: "FAQ" ,
       headerLeft: null,

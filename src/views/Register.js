@@ -9,7 +9,10 @@ import {
   TouchableOpacity ,
   TextInput
 } from "react-native";
-import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp
+} from "react-native-responsive-screen";
 //import Input from "../components/Input";
 import Button from "../components/Button";
 
@@ -29,8 +32,35 @@ class Register extends Component {
     this.onPressLoginRedirect = this.onPressLoginRedirect.bind(this);
 }
 
-  onPressCompleteRegister = () => {
-    this.props.navigation.navigate("Home");
+  onPressCompleteRegister =  () => {
+
+
+    fetch('http://192.168.43.95:3000/api/patient/register', {
+  method: 'POST',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    name: this.state.username,
+    email: this.state.email,
+    password : this.state.password ,
+    dob : Date.now() ,
+    gender : "male" ,
+    locality : "xdc" ,
+    city:"dhik" ,
+    zip:"1244" ,
+    patientId :"124"
+  }),
+}).then( this.props.navigation.navigate("Home"))
+.catch((error) => {
+  console.error(error);
+});
+
+
+
+
+    
   };
 
   onPressLoginRedirect = () => {
@@ -45,7 +75,7 @@ class Register extends Component {
       <View
         style={{
           flex: 1,
-          backgroundColor:"#153c69" ,
+          backgroundColor:"#1c2c38" ,
           flexDirection:"column"
         }}
       >
@@ -122,7 +152,7 @@ class Register extends Component {
               <Button
                 fullWidth
                 onPress={this.onPressCompleteRegister}
-                backgroundColor="#4f83cc"
+                backgroundColor="#4ac2ae"
                 text="Complete registration"
               />
 
@@ -152,7 +182,7 @@ const styles = StyleSheet.create({
       marginTop:15
   } ,
     inputBox: {
-        width: 300,
+        width: wp("92%") ,
         height : 50 ,
         backgroundColor: '#eeeeee', 
         borderRadius: 25,
@@ -162,8 +192,8 @@ const styles = StyleSheet.create({
         marginVertical: 10
     },
     button: {
-        width: 300,
-        backgroundColor: '#4f83cc',
+        width: wp("92%") ,
+        backgroundColor: '#4ac2ae',
         borderRadius: 25,
         marginVertical: 10,
         paddingVertical: 12

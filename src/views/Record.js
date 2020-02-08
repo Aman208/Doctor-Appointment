@@ -51,21 +51,12 @@ class Record extends Component {
       <View
         style={{
           flex: 1 ,
-          backgroundColor:"#153c69",
+          backgroundColor:"#1c2c38",
           flexDirection : "column"
         }}
       >
 
-             <Text
-              style={{
-                fontSize: 15,
-                color: "#ffffff",
-                fontWeight: "bold"
-              }}
-            >
-              Health Record
-            </Text>
-                 
+             
         
           <ScrollView
             contentContainerStyle={{

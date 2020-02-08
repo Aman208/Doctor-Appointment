@@ -6,7 +6,9 @@ class FAQ extends Component {
     return (
       <View
         style={{
-          flex: 1
+          flex: 1 ,
+
+          backgroundColor : "#1c2c38"
         }}
       >
         <ScrollView
@@ -49,7 +51,7 @@ class FAQ extends Component {
 
 const styles = {
   titleStyle: {
-    fontSize: 18,
+    fontSize: 23,
     color: "#5BBC9D",
     paddingBottom: 10
   },
@@ -57,7 +59,8 @@ const styles = {
     fontSize: 15,
     paddingTop: 10,
     paddingBottom: 15,
-    lineHeight: 20
+    lineHeight: 20 ,
+    color : "white"
   }
 };
 
